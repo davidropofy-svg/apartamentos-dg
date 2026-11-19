@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apartamentos DG · Arriendos con administración directa</title>
+<meta name="description" content="Apartamentos y casa en arriendo administrados directamente por la familia. Espacios iluminados, pagos claros y respuesta rápida.">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#04345A; --navy-dark:#022440; --gold:#C8AB5D; --gold-soft:#F4EEDD;
+    --ink:#1C2733; --muted:#5B6672; --bg:#FFFFFF; --bg-alt:#F6F7F9; --line:#E3E6EA;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .nav img{height:52px;width:auto}
+  .nav-links{display:flex;gap:28px;font-weight:500;font-size:15px}
+  .nav-links a:hover{color:var(--gold)}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;border-radius:999px;padding:14px 26px;transition:transform .15s, box-shadow .15s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(4,52,90,.18)}
+  .btn-gold{background:var(--gold);color:var(--navy-dark)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-outline{border:2px solid #fff;color:#fff}
+  .btn svg{width:20px;height:20px}
+  .nav .btn{padding:10px 20px;font-size:14px}
+
+  /* Hero */
+  .hero{position:relative;color:#fff;background:linear-gradient(110deg,rgba(2,36,64,.94) 0%,rgba(4,52,90,.82) 50%,rgba(4,52,90,.35) 100%),url('img/sala-casa.jpg') center/cover}
+  .hero .wrap{padding-top:110px;padding-bottom:120px}
+  .eyebrow{display:inline-block;color:var(--gold);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:13px;margin-bottom:18px}
+  .hero h1{font-size:clamp(34px,5.2vw,56px);line-height:1.12;font-weight:700;max-width:640px}
+  .hero h1 span{color:var(--gold)}
+  .hero p{font-size:18px;max-width:540px;margin:22px 0 34px;color:#DCE4EC}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-stats{display:flex;gap:40px;margin-top:56px;flex-wrap:wrap}
+  .hero-stats div strong{display:block;font-size:30px;color:var(--gold)}
+  .hero-stats div span{font-size:14px;color:#C6D2DD}
+
+  section{padding:90px 0}
+  .alt{background:var(--bg-alt)}
+  .head{text-align:center;max-width:640px;margin:0 auto 52px}
+  .head h2{font-size:clamp(28px,3.6vw,38px);color:var(--navy);line-height:1.2;margin-bottom:12px}
+  .head p{color:var(--muted)}
+  .rule{width:56px;height:3px;background:var(--gold);margin:0 auto 18px;border-radius:2px}
+
+  /* Propiedades */
+  .props{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+  .prop{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 24px rgba(4,52,90,.08);display:flex;flex-direction:column}
+  .prop img{height:260px;width:100%;object-fit:cover}
+  .prop-body{padding:28px;display:flex;flex-direction:column;flex:1}
+  .tag{align-self:flex-start;background:var(--gold-soft);color:#8A6F2A;font-weight:600;font-size:12px;padding:5px 12px;border-radius:999px;margin-bottom:14px;letter-spacing:.04em;text-transform:uppercase}
+  .prop h3{color:var(--navy);font-size:24px;margin-bottom:8px}
+  .prop p{color:var(--muted);margin-bottom:18px}
+  .prop ul{list-style:none;margin-bottom:24px;display:grid;gap:8px}
+  .prop li{padding-left:26px;position:relative;font-size:15px}
+  .prop li::before{content:"";position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:50%;background:var(--gold)}
+  .price{margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px;flex-wrap:wrap}
+  .price small{display:block;color:var(--muted);font-size:13px}
+  .price strong{font-size:26px;color:var(--navy)}
+  .price .btn{padding:11px 20px;font-size:14px}
+
+  /* Galería */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+  .gallery figure{position:relative;border-radius:12px;overflow:hidden;cursor:zoom-in}
+  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+  .gallery figure:hover img{transform:scale(1.05)}
+  .gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;background:linear-gradient(transparent,rgba(2,36,64,.85));color:#fff;font-size:13px;font-weight:500}
+  .g-big{grid-column:span 2;grid-row:span 2}
+  .g-tall{grid-row:span 2}
+
+  /* Beneficios */
+  .benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .benefit{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px}
+  .icon{width:52px;height:52px;border-radius:12px;background:var(--navy);display:grid;place-items:center;margin-bottom:18px}
+  .icon svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .benefit h3{font-size:17px;color:var(--navy);margin-bottom:8px}
+  .benefit p{font-size:14.5px;color:var(--muted)}
+
+  /* Requisitos */
+  .reqs{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .reqs img{border-radius:var(--radius);height:420px;width:100%;object-fit:cover}
+  .reqs h2{color:var(--navy);font-size:clamp(26px,3.2vw,34px);margin-bottom:14px;line-height:1.2}
+  .reqs > div > p{color:var(--muted);margin-bottom:26px}
+  .steps{list-style:none;counter-reset:s;display:grid;gap:18px}
+  .steps li{counter-increment:s;display:flex;gap:16px;align-items:flex-start}
+  .steps li::before{content:counter(s);flex:none;width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--navy-dark);font-weight:700;display:grid;place-items:center}
+  .steps strong{display:block;color:var(--navy)}
+  .steps span{font-size:14.5px;color:var(--muted)}
+
+  /* CTA */
+  .cta{background:var(--navy);color:#fff;text-align:center;padding:80px 0}
+  .cta h2{font-size:clamp(28px,3.6vw,40px);margin-bottom:12px}
+  .cta p{color:#C6D2DD;margin-bottom:30px}
+
+  footer{background:var(--navy-dark);color:#9FB0C0;padding:34px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+  footer strong{color:#fff}
+
+  .wa-float{position:fixed;right:20px;bottom:20px;z-index:30;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+  .wa-float svg{width:32px;height:32px;fill:#fff}
+
+  /* Lightbox */
+  .lb{position:fixed;inset:0;background:rgba(2,20,36,.92);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
+  .lb.open{display:flex}
+  .lb img{max-height:88vh;border-radius:10px}
+
+  @media (max-width:900px){
+    .nav-links{display:none}
+    .props,.reqs{grid-template-columns:1fr}
+    .benefits{grid-template-columns:1fr 1fr}
+    .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:170px}
+    .reqs img{height:300px}
+  }
+  @media (max-width:560px){
+    .nav img{height:42px}
+    .nav .btn span{display:none}
+    .hero .wrap{padding-top:70px;padding-bottom:80px}
+    .hero-stats{gap:26px}
+    section{padding:64px 0}
+    .benefits{grid-template-columns:1fr}
+    .g-big{grid-column:span 2;grid-row:span 1}
+    .g-tall{grid-row:span 1}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="#inicio"><img src="img/logo.png" alt="Apartamentos DG"></a>
+    <nav class="nav-links">
+      <a href="#espacios">Espacios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#beneficios">Beneficios</a>
+      <a href="#requisitos">Cómo arrendar</a>
+    </nav>
+    <a class="btn btn-navy js-wa" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 2.4 17.6L1 23l5.5-1.4A11.8 11.8 0 0 0 20.5 3.5ZM12 21.4a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.3.9.9-3.2-.2-.4A9.8 9.8 0 1 1 12 21.4Zm5.4-7.3c-.3-.2-1.8-.9-2-1-.3-.1-.5-.1-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.7-.4Z"/></svg><span>Escríbenos</span></a>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <span class="eyebrow">Arriendos · <span class="js-ciudad"></span></span>
+    <h1>Tu próximo hogar, <span>administrado por una familia</span> que responde.</h1>
+    <p>Apartamentos y casa en arriendo, iluminados y bien cuidados. Trato directo con los propietarios, pagos claros y atención rápida cuando la necesitas.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-gold js-wa" href="#">Agendar una visita</a>
+      <a class="btn btn-outline" href="#espacios">Ver espacios</a>
+    </div>
+    <div class="hero-stats">
+      <div><strong>6</strong><span>apartamentos</span></div>
+      <div><strong>1</strong><span>casa familiar</span></div>
+      <div><strong>100%</strong><span>administración directa</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="espacios">
+  <div class="wrap">
+    <div class="head">
+      <div class="rule"></div>
+      <h2>Nuestros espacios</h2>
+      <p>Elige el formato que mejor se adapta a ti. Escríbenos para conocer la disponibilidad actual.</p>
+    </div>
+    <div class="props">
+      <article class="prop">
+        <img src="img/habitacion.jpg" alt="Habitación amplia con clóset de madera y ventanal">
+        <div class="prop-body">
+          <span class="tag">Apartamentos</span>
+          <h3>Apartamentos DG</h3>
+          <p>Unidades cómodas e iluminadas, ideales para parejas, profesionales o familias pequeñas.</p>
+          <ul>
+            <li>Habitaciones con clóset de madera</li>
+            <li>Cocina integral con estufa a gas y campana</li>
+            <li>Pisos en cerámica, fáciles de mantener</li>
+            <li>Buena entrada de luz natural</li>
+          </ul>
+          <div class="price">
+            <div><small>Canon mensual</small><strong>$2.100.000</strong></div>
+            <a class="btn btn-navy js-wa" href="#" data-msg="Hola, me interesa un apartamento de Apartamentos DG. ¿Hay disponibilidad?">Consultar disponibilidad</a>
+          </div>
+        </div>
+      </article>
+      <article class="prop">
+        <img src="img/comedor-casa.jpg" alt="Comedor amplio de la casa con acceso a la cocina">
+        <div class="prop-body">
+          <span class="tag">Casa</span>
+          <h3>Casa familiar</h3>
+          <p>Espacio amplio para toda la familia, con sala, comedor independiente y cocina con mesón en granito.</p>
+          <ul>
+            <li>Sala amplia y comedor independiente</li>
+            <li>Cocina con mesones en granito y doble poceta</li>
+            <li>Patio de ropas y buena ventilación</li>
+            <li>Zona de estudio u oficina</li>
+          </ul>
+          <div class="price">
+            <div><small>Canon mensual</small><strong>$3.100.000</strong></div>
+            <a class="btn btn-navy js-wa" href="#" data-msg="Hola, me interesa la casa de Apartamentos DG. ¿Está disponible?">Consultar disponibilidad</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="galeria">
+  <div class="wrap">
+    <div class="head">
+      <div class="rule"></div>
+      <h2>Conoce los espacios</h2>
+      <p>Fotos reales de nuestras unidades. Toca una foto para verla en grande.</p>
+    </div>
+    <div class="gallery">
+      <figure class="g-big"><img src="img/sala-casa.jpg" alt="Sala amplia de la casa" loading="lazy"><figcaption>Sala · Casa</figcaption></figure>
+      <figure class="g-tall"><img src="img/cocina-apto.jpg" alt="Cocina integral de apartamento" loading="lazy"><figcaption>Cocina · Apartamento</figcaption></figure>
+      <figure><img src="img/habitacion.jpg" alt="Habitación con clóset" loading="lazy"><figcaption>Habitación · Apartamento</figcaption></figure>
+      <figure><img src="img/cocina-casa.jpg" alt="Cocina con mesones en granito" loading="lazy"><figcaption>Cocina · Casa</figcaption></figure>
+      <figure class="g-big"><img src="img/comedor-casa.jpg" alt="Comedor de la casa" loading="lazy"><figcaption>Comedor · Casa</figcaption></figure>
+      <figure class="g-big"><img src="img/entrada-casa.jpg" alt="Entrada y sala de la casa" loading="lazy"><figcaption>Entrada · Casa</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="beneficios">
+  <div class="wrap">
+    <div class="head">
+      <div class="rule"></div>
+      <h2>¿Por qué arrendar con nosotros?</h2>
+      <p>Sin intermediarios: hablas directamente con quien administra.</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><h3>Trato directo</h3><p>Administración familiar, sin inmobiliarias de por medio.</p></div>
+      <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>Respuesta rápida</h3><p>Atendemos solicitudes y arreglos sin largas esperas.</p></div>
+      <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div><h3>Pagos claros</h3><p>Recibo de cada pago y fechas de cobro definidas desde el inicio.</p></div>
+      <div class="benefit"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Espacios cuidados</h3><p>Unidades limpias, revisadas y listas para habitar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="requisitos">
+  <div class="wrap reqs">
+    <img src="img/entrada-casa.jpg" alt="Entrada de la casa" loading="lazy">
+    <div>
+      <span class="eyebrow">Cómo arrendar</span>
+      <h2>Arrendar es sencillo</h2>
+      <p>Te acompañamos en cada paso, de la primera visita a la entrega de llaves.</p>
+      <ol class="steps">
+        <li><div><strong>Escríbenos por WhatsApp</strong><span>Cuéntanos qué buscas y te confirmamos disponibilidad.</span></div></li>
+        <li><div><strong>Agenda tu visita</strong><span>Conoce el espacio en persona, sin compromiso.</span></div></li>
+        <li><div><strong>Presenta tus documentos</strong><span>Documento de identidad, soportes de ingresos y fiador o póliza.</span></div></li>
+        <li><div><strong>Firma y recibe las llaves</strong><span>Contrato claro, depósito y fecha de pago definida.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>¿Listo para conocer tu nuevo hogar?</h2>
+    <p>Escríbenos y agenda una visita esta misma semana.</p>
+    <a class="btn btn-gold js-wa" href="#">Agendar visita por WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Apartamentos DG</strong> · Arriendos con administración directa · <span class="js-ciudad"></span></div>
+    <div>© <span id="year"></span> Apartamentos DG</div>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" href="#" aria-label="Escríbenos por WhatsApp"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 2.4 17.6L1 23l5.5-1.4A11.8 11.8 0 0 0 20.5 3.5ZM12 21.4a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.3.9.9-3.2-.2-.4A9.8 9.8 0 1 1 12 21.4Zm5.4-7.3c-.3-.2-1.8-.9-2-1-.3-.1-.5-.1-.7.2l-.9 1.1c-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.2-.3-.3-.7-.4Z"/></svg></a>
+
+<div class="lb" id="lb"><img alt=""></div>
+
+<script>
+  /* ====== CONFIGURA AQUÍ ====== */
+  const WHATSAPP = "573057920340";   // tu número con 57 adelante, sin espacios ni +
+  const CIUDAD   = "Cajica";      // ej. "Chapinero, Bogotá"
+  const MENSAJE  = "Hola, vi la página de Apartamentos DG y quiero agendar una visita.";
+  /* ============================ */
+
+  document.querySelectorAll('.js-wa').forEach(a => {
+    const msg = a.dataset.msg || MENSAJE;
+    a.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    a.target = "_blank"; a.rel = "noopener";
+  });
+  document.querySelectorAll('.js-ciudad').forEach(e => e.textContent = CIUDAD);
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const lb = document.getElementById('lb'), lbImg = lb.querySelector('img');
+  document.querySelectorAll('.gallery figure').forEach(f => f.addEventListener('click', () => {
+    const i = f.querySelector('img'); lbImg.src = i.src; lbImg.alt = i.alt; lb.classList.add('open');
+  }));
+  lb.addEventListener('click', () => lb.classList.remove('open'));
+</script>
+</body>
+</html>
